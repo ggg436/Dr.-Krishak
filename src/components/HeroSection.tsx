@@ -1,15 +1,49 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from 'sonner';
 
 const HeroSection = () => {
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const { currentUser } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Email submitted:', email);
-    // Handle email submission here
+    
+    // If the user is not logged in and tries to submit the form
+    if (!currentUser) {
+      // Show a toast notification suggesting login/signup
+      toast.warning("Please login or create an account to continue", {
+        action: {
+          label: "Sign Up",
+          onClick: () => {
+            // You could dispatch a custom event to open the auth modal
+            const event = new CustomEvent("open-auth-modal", { detail: { tab: "register" } });
+            document.dispatchEvent(event);
+          }
+        }
+      });
+      return;
+    }
+    
+    // If the user is logged in, proceed with the form submission
+    setLoading(true);
+    
+    try {
+      // Here you would normally submit to an API
+      // For now, just simulate a request with a timeout
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast.success("Your free card request has been submitted!");
+      setEmail("");
+    } catch (error) {
+      toast.error("Failed to submit your request. Please try again.");
+      console.error("Form submission error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -38,8 +72,9 @@ const HeroSection = () => {
             <Button 
               type="submit"
               className="bg-zinc-900 hover:bg-zinc-800 text-white px-8 py-4 h-14 rounded-lg font-bold text-lg whitespace-nowrap"
+              disabled={loading}
             >
-              Get Free Card
+              {loading ? "Processing..." : "Get Free Card"}
             </Button>
           </form>
           
