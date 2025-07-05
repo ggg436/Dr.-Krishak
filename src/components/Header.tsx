@@ -50,12 +50,6 @@ const Header = () => {
             <Link to="/community" className="text-zinc-900 font-medium hover:text-blue-600 transition-colors">
               Community
             </Link>
-            <Link to="/neon-community" className="text-zinc-900 font-medium hover:text-green-600 transition-colors">
-              Neon Community
-            </Link>
-            <Link to="/neon-test" className="text-zinc-900 font-medium hover:text-purple-600 transition-colors">
-              Neon Test
-            </Link>
           </nav>
         </div>
         
@@ -75,12 +69,6 @@ const Header = () => {
             </div>
           ) : (
             <>
-              <button 
-                onClick={handleOpenLoginModal} 
-                className="text-zinc-900 font-medium hover:text-zinc-600 transition-colors"
-              >
-                Sign in
-              </button>
               <Button 
                 onClick={handleOpenRegisterModal}
                 className="bg-zinc-900 hover:bg-zinc-800 text-white px-6 py-2.5 rounded-lg font-medium"

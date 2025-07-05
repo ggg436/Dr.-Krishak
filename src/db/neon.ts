@@ -1,7 +1,4 @@
 import { neon } from '@neondatabase/serverless';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 // Use the provided connection string
 const connectionString = 'postgresql://neondb_owner:npg_aWyRwHeT41rV@ep-misty-bird-a8emrqlr-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require';

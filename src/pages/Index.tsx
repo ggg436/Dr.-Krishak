@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
-import FirestoreDemo from '@/components/FirestoreDemo';
-import StorageDemo from '@/components/StorageDemo';
 
 const Index = () => {
   // Listen for custom event to open auth modal
@@ -32,18 +30,6 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Header />
       <HeroSection />
-      
-      <div className="container mx-auto py-12 space-y-16">
-        <section>
-          <h2 className="text-3xl font-bold mb-6 text-center">Firestore Database Demo</h2>
-          <FirestoreDemo />
-        </section>
-        
-        <section>
-          <h2 className="text-3xl font-bold mb-6 text-center">Firebase Storage Demo</h2>
-          <StorageDemo />
-        </section>
-      </div>
     </div>
   );
 };
